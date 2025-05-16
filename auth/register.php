@@ -1,70 +1,56 @@
 <?php
-require "../includes/header.php"; ?>
-<?php
+require "../includes/header.php";
 require "../config/config.php";
 
-$username = $email = $password = $confirm_password = "";
-$errors = [];
-$success = "";
+// Check if database connection is established
+if (!isset($pdo)) {
+  die("Database connection not established");
+}
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST['register'])) {
   $username = trim($_POST["username"]);
   $email = trim($_POST["email"]);
   $password = trim($_POST["password"]);
   $confirm_password = trim($_POST["confirm_password"]);
 
-  if (empty($username)) {
-    $errors[] = "Username is required.";
-  } elseif (strlen($username) < 3) {
-    $errors[] = "Username must be at least 3 characters long.";
-  }
+  if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
+    echo "<div class='alert alert-danger bg-danger text-white'>Please fill in all fields.</div>";
+  } else {
+    if ($password == $confirm_password) {
+      try {
+        // Check if username or email already exists
+        $check = $pdo->prepare("SELECT id FROM users WHERE username = :username OR email = :email");
+        $check->execute([
+          ':username' => $username,
+          ':email' => $email
+        ]);
 
-  if (empty($email)) {
-    $errors[] = "Email is required.";
-  } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $errors[] = "Invalid email format.";
-  }
+        if ($check->rowCount() > 0) {
+          echo "<div class='alert alert-danger bg-danger text-white'>Username or email already exists.</div>";
+        } else {
+          // Insert new user
+          $insert = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
+          $insert->execute([
+            ':username' => $username,
+            ':email' => $email,
+            ':password' => password_hash($password, PASSWORD_DEFAULT)
+          ]);
 
-  if (empty($password)) {
-    $errors[] = "Password is required.";
-  } elseif (strlen($password) < 6) {
-    $errors[] = "Password must be at least 6 characters long.";
-  }
-
-  if ($password !== $confirm_password) {
-    $errors[] = "Passwords do not match.";
-  }
-
-  // Check if username or email already exists
-  if (empty($errors)) {
-    $stmt = $conn->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
-    $stmt->bind_param("ss", $username, $email);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows > 0) {
-      $errors[] = "Username or email already taken.";
-    }
-    $stmt->close();
-  }
-
-  // If no errors, proceed to register the user
-  if (empty($errors)) {
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-    $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $username, $email, $hashed_password);
-
-    if ($stmt->execute()) {
-      $success = "Registration successful! You can now <a href='login.php'>log in</a>.";
-      $username = $email = $password = $confirm_password = "";
+          if ($insert->rowCount() > 0) {
+            echo "<div class='alert alert-success bg-success text-white'>Registration successful. You can now <a href='login.php' class='text-white'>login</a>.</div>";
+          } else {
+            echo "<div class='alert alert-danger bg-danger text-white'>Registration failed. Please try again.</div>";
+          }
+        }
+        header("Location: login.php");
+        exit();
+      } catch (PDOException $e) {
+        echo "<div class='alert alert-danger bg-danger text-white'>Error: " . $e->getMessage() . "</div>";
+      }
     } else {
-      $errors[] = "An error occurred. Please try again.";
+      echo "<div class='alert alert-danger bg-danger text-white'>Passwords do not match.</div>";
     }
-    $stmt->close();
   }
-
-  $conn->close();
 }
 ?>
 
