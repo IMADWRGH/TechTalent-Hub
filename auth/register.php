@@ -42,7 +42,7 @@ if (isset($_POST['register'])) {
             echo "<div class='alert alert-danger bg-danger text-white'>Registration failed. Please try again.</div>";
           }
         }
-        header("Location: login.php");
+        header("Location: ../login.php");
         exit();
       } catch (PDOException $e) {
         echo "<div class='alert alert-danger bg-danger text-white'>Error: " . $e->getMessage() . "</div>";
