@@ -27,3 +27,6 @@ try {
 } catch (\PDOException $msg) {
     echo ("Database connection failed: " . $msg->getMessage());
 }
+
+
+define("APP_URL", "http://localhost/TechTalent Hub");
