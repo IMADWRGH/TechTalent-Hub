@@ -8,14 +8,16 @@ if (isset($_POST['submit'])) {
   if (empty($email) or empty($password)) {
     echo "<script>alert('Email and password are required');</script>";
   } else {
-    $query = "SELECT * FROM users WHERE email = :email AND password = :password";
+    $query = "SELECT * FROM users WHERE email = :email";
     $stmt = $pdo->prepare($query);
-    $stmt->execute(['email' => $email, 'password' => $password]);
-
+    $stmt->execute(['email' => $email]);
+    $select = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($stmt->rowCount() > 0) {
-
-      header("Location: ../index.html");
-      exit();
+      if (password_verify($password, $select['password'])) {
+        echo"LOGGED IN";
+        header("Location: ../index.html");
+        exit();
+      }
     } else {
 
       echo "<script>alert('Invalid email or password');</script>";
