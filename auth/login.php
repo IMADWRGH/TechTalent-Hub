@@ -14,9 +14,11 @@ if (isset($_POST['submit'])) {
     $select = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($stmt->rowCount() > 0) {
       if (password_verify($password, $select['password'])) {
-        echo"LOGGED IN";
-        header("Location: ../index.html");
+        echo "LOGGED IN";
+        //header("Location: ../index.html");
         exit();
+      } else {
+        echo "<script>alert('Invalid email or password');</script>";
       }
     } else {
 
@@ -35,7 +37,7 @@ if (isset($_POST['submit'])) {
       <div class="col-md-7">
         <h1 class="text-white font-weight-bold">Log In</h1>
         <div class="custom-breadcrumbs">
-          <a href="#">Home</a> <span class="mx-2 slash">/</span>
+          <a href="<?php echo APP_URL ?>/auth/login.php">Home</a> <span class="mx-2 slash">/</span>
           <span class="text-white"><strong>Log In</strong></span>
         </div>
       </div>

@@ -59,7 +59,7 @@
                             <li class="d-lg-none">
                                 <a href="post-job.html"><span class="mr-2">+</span> Post a Job</a>
                             </li>
-                            <li class="d-lg-none"><a href="login.html">Log In</a></li>
+                            <li class="d-lg-none"><a href="#">Log In</a></li>
                         </ul>
                     </nav>
 
@@ -70,7 +70,7 @@
                                 href="post-job.html"
                                 class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Post a Job</a>
                             <a
-                                href="login.html"
+                                href="<?php echo APP_URL ?>/auth/login.php"
                                 class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a>
                             <a
                                 href="<?php echo APP_URL ?>/auth/register.php"
