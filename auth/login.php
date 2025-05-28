@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
       <div class="col-md-7">
         <h1 class="text-white font-weight-bold">Log In</h1>
         <div class="custom-breadcrumbs">
-          <a href="<?php echo APP_URL ?>/auth/login.php">Home</a> <span class="mx-2 slash">/</span>
+          <a href="<?php echo APP_URL ?>">Home</a> <span class="mx-2 slash">/</span>
           <span class="text-white"><strong>Log In</strong></span>
         </div>
       </div>
