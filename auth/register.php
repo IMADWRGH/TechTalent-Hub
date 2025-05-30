@@ -13,8 +13,9 @@ if (isset($_POST['register'])) {
   $email = trim($_POST["email"]);
   $password = trim($_POST["password"]);
   $confirm_password = trim($_POST["confirm_password"]);
+  $userType = trim($_POST["user_type"]);
 
-  if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
+  if (empty($username) || empty($email) || empty($password) || empty($confirm_password) || empty($userType)) {
     echo "<div class='alert alert-danger bg-danger text-white'>Please fill in all fields.</div>";
   } else {
     if ($password == $confirm_password) {
@@ -30,11 +31,12 @@ if (isset($_POST['register'])) {
           echo "<div class='alert alert-danger bg-danger text-white'>Username or email already exists.</div>";
         } else {
           // Insert new user
-          $insert = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
+          $insert = $pdo->prepare("INSERT INTO users (username, email, password, userType) VALUES (:username, :email, :password, :userType)");
           $insert->execute([
             ':username' => $username,
             ':email' => $email,
-            ':password' => password_hash($password, PASSWORD_DEFAULT)
+            ':password' => password_hash($password, PASSWORD_DEFAULT),
+            ':userType' => $userType
           ]);
 
           if ($insert->rowCount() > 0) {
@@ -97,6 +99,16 @@ if (isset($_POST['register'])) {
                 class="form-control"
                 placeholder="Email address"
                 name="email" />
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-12 mb-3 mb-md-0">
+              <label class="text-black" for="user_type">User Type</label>
+              <select name="user_type" id="user_type" class="form-control" title="User Type">
+                <option value="" disabled selected>--Select User Type--</option>
+                <option value="student">Candidate</option>
+                <option value="instructor">Company</option>
+              </select>
             </div>
           </div>
           <div class="row form-group">
