@@ -1,5 +1,10 @@
 <?php
 session_start();
+define('APP_URL', 'http://localhost/techtalent-hub'); // Adjust this URL as needed
+if (!isset($_SESSION['user'])) {
+    header('Location: ' . APP_URL . '/auth/login.php');
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,17 +20,17 @@ session_start();
     <meta name="author" content="Free-Template.co" />
     <link rel="shortcut icon" href="ftco-32x32.png" />
 
-    <link rel="stylesheet" href="../css/custom-bs.css" />
-    <link rel="stylesheet" href="../css/jquery.fancybox.min.css" />
-    <link rel="stylesheet" href="../css/bootstrap-select.min.css" />
-    <link rel="stylesheet" href="../fonts/icomoon/style.css" />
-    <link rel="stylesheet" href="../fonts/line-icons/style.css" />
-    <link rel="stylesheet" href="../css/owl.carousel.min.css" />
-    <link rel="stylesheet" href="../css/animate.min.css" />
-    <link rel="stylesheet" href="../css/quill.snow.css" />
+    <link rel="stylesheet" href="<?php echo APP_URL;?>css/custom-bs.css" />
+    <link rel="stylesheet" href="<?php echo APP_URL;?>css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="<?php echo APP_URL;?>css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="<?php echo APP_URL;?>fonts/icomoon/style.css" />
+    <link rel="stylesheet" href="<?php echo APP_URL;?>fonts/line-icons/style.css" />
+    <link rel="stylesheet" href="<?php echo APP_URL;?>css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="<?php echo APP_URL;?>css/animate.min.css" />
+    <link rel="stylesheet" href="<?php echo APP_URL;?>css/quill.snow.css" />
 
     <!-- MAIN CSS -->
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="<?php echo APP_URL;?>css/style.css" />
 </head>
 
 <body id="top">

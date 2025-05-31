@@ -1,5 +1,7 @@
 <?php
-require_once "../includes/header.php";
+require "config/config.php";
+require "includes/header.php";
+
 ?>
 <!-- HOME -->
 <section
