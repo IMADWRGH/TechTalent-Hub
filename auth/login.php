@@ -14,8 +14,14 @@ if (isset($_POST['submit'])) {
     $select = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($stmt->rowCount() > 0) {
       if (password_verify($password, $select['password'])) {
-        echo "LOGGED IN";
-        //header("Location: ../index.html");
+       $_SESSION['username'] = $select['username'];
+        $_SESSION['userType'] = $select['userType'];
+        $_SESSION['id'] = $select['id'];
+        if ($select['userType'] == 'admin') {
+          header("Location: ../admin/dashboard.php");
+        } else {
+          header("Location: ".APP_URL."");
+        }
         exit();
       } else {
         echo "<script>alert('Invalid email or password');</script>";
