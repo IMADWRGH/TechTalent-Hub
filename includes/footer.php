@@ -1,4 +1,3 @@
-
 <footer class="site-footer">
     <a href="#top" class="smoothscroll scroll-top">
         <span class="icon-keyboard_arrow_up"></span>
@@ -67,21 +66,21 @@
 </div>
 
 <!-- SCRIPTS -->
-<script src="http://localhost/techtalent-hub/js/jquery.min.js"></script>
-<script src="http://localhost/techtalent-hub/js/bootstrap.bundle.min.js"></script>
-<script src="http://localhost/techtalent-hub/js/isotope.pkgd.min.js"></script>
-<script src="http://localhost/techtalent-hub/js/stickyfill.min.js"></script>
-<script src="http://localhost/techtalent-hub/js/jquery.fancybox.min.js"></script>
-<script src="http://localhost/techtalent-hub/js/jquery.easing.1.3.js"></script>
+<script src="http://localhost/TechTalent Hub/js/jquery.min.js"></script>
+<script src="http://localhost/TechTalent Hub/js/bootstrap.bundle.min.js"></script>
+<script src="http://localhost/TechTalent Hub/js/isotope.pkgd.min.js"></script>
+<script src="http://localhost/TechTalent Hub/js/stickyfill.min.js"></script>
+<script src="http://localhost/TechTalent Hub/js/jquery.fancybox.min.js"></script>
+<script src="http://localhost/TechTalent Hub/js/jquery.easing.1.3.js"></script>
 
-<script src="http://localhost/techtalent-hub/js/jquery.waypoints.min.js"></script>
-<script src="http://localhost/techtalent-hub/js/jquery.animateNumber.min.js"></script>
-<script src="http://localhost/techtalent-hub/js/owl.carousel.min.js"></script>
-<script src="http://localhost/techtalent-hub/js/quill.min.js"></script>
+<script src="http://localhost/TechTalent Hub/js/jquery.waypoints.min.js"></script>
+<script src="http://localhost/TechTalent Hub/js/jquery.animateNumber.min.js"></script>
+<script src="http://localhost/TechTalent Hub/js/owl.carousel.min.js"></script>
+<script src="http://localhost/TechTalent Hub/js/quill.min.js"></script>
 
-<script src="http://localhost/techtalent-hub/js/bootstrap-select.min.js"></script>
+<script src="http://localhost/TechTalent Hub/js/bootstrap-select.min.js"></script>
 
-<script src="http://localhost/techtalent-hub/js/custom.js"></script>
+<script src="http://localhost/TechTalent Hub/js/custom.js"></script>
 </body>
 
 </html>

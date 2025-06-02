@@ -29,4 +29,4 @@ try {
 }
 
 
-define("APP_URL", "http://localhost/TechTalent Hub");
+define("APP_URL", "http://localhost/TechTalent%20Hub");
