@@ -341,12 +341,13 @@ require "includes/header.php";
       <div class="col-md-8">
         <h2 class="text-white">Looking For A Job?</h2>
         <p class="mb-0 text-white lead">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit tempora
-          adipisci impedit.
+          TechTalent Hub is the premier platform for technology professionals,
+          offering exclusive access to top-tier opportunities at innovative companies
+          across all experience levels.
         </p>
       </div>
       <div class="col-md-3 ml-auto">
-        <a href="#" class="btn btn-warning btn-block btn-lg">Sign Up</a>
+        <a href="<?php echo APP_URL; ?>/auth/register.php" class="btn btn-warning btn-block btn-lg">Sign Up</a>
       </div>
     </div>
   </div>
